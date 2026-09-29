@@ -5,6 +5,7 @@ Documentação das configurações, comandos e procedimentos aplicados às minha
 ## Comandos pessoais
 
 - [`kz`](docs/comandos/kz.md) — namespace dos comandos pessoais.
+- [`kz update`](docs/comandos/update.md) — atualização e limpeza do sistema.
 
 ## Configurações
 
