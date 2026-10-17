@@ -8,6 +8,7 @@ Documentação das configurações, comandos e procedimentos aplicados às minha
 
 ## Aplicativos e diagnósticos
 
+- [WinBoat: inicialização automática indesejada](docs/aplicativos/winboat-inicializacao-automatica.md) — ocorrência de 2026-10-17, diagnóstico pelo Docker e alteração da política de reinício.
 - [WinBoat: Excel congelado no taiwan_lin](docs/aplicativos/winboat.md) — registro de 2026-10-09, evidências, intervenções, pesquisa e roteiro para uma nova ocorrência.
 
 ## Configurações
