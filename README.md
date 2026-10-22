@@ -11,6 +11,8 @@ Documentação das configurações, comandos e procedimentos aplicados às minha
 - [WinBoat: inicialização automática indesejada](docs/aplicativos/winboat-inicializacao-automatica.md) — ocorrência de 2026-10-17, diagnóstico pelo Docker e alteração da política de reinício.
 - [WinBoat: Excel congelado no taiwan_lin](docs/aplicativos/winboat.md) — registro de 2026-10-09, evidências, intervenções, pesquisa e roteiro para uma nova ocorrência.
 
+- [RStudio: erro de sandbox no Ubuntu 24.04](docs/aplicativos/rstudio-sandbox-ubuntu.md) — diagnóstico, correção AppArmor e ajuste pendente do atalho no taiwan.
+
 ## Configurações
 
 Esta documentação será ampliada conforme novas configurações forem aplicadas no projeto Tech Linux.
