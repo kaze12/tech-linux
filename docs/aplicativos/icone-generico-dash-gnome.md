@@ -80,7 +80,7 @@ Após fechar e reabrir o RStudio pelo menu de aplicativos, **o usuário confirmo
 
 **Limite da evidência:** foram alterados simultaneamente o nome do arquivo (`rstudio-taiwan.desktop` → `rstudio.desktop`) e o `StartupWMClass` (`RStudio` → `rstudio`). O teste confirma o resultado conjunto, mas não estabelece qual das duas alterações era necessária. O nome `productName: "rstudio"` no `package.json` foi identificado; não houve leitura conclusiva do app ID Wayland da janela (a tentativa com `org.gnome.Shell.Eval` retornou `(false, '')`).
 
-**Pendência de manutenção:** o lançador original e o novo podem coexistir; antes de remover qualquer um, verificar qual entrada está sendo utilizada e/ou fixada no Dash. O backup `rstudio-taiwan.desktop.bak` também foi preservado. **Não há confirmação de limpeza das duplicatas.**
+**Limpeza posterior confirmada por comandos (2026-10-27):** após confirmar que `rstudio.desktop` continha `StartupWMClass=rstudio` e apontava para o ícone correto, foi removido somente `~/.local/share/applications/rstudio-taiwan.desktop`. A listagem final mostrou `rstudio.desktop` e o backup `rstudio-taiwan.desktop.bak`; `desktop-file-validate` apresentou apenas o aviso não impeditivo sobre `Categories=Development;Science;Math;`. O usuário respondeu `ok` após a instrução de conferir novamente o Dash; não foi apresentada nova captura de tela. O ícone correto havia sido confirmado antes da limpeza.
 
 Esta correção é independente do problema anterior de sandbox/AppArmor do aplicativo, documentado em [RStudio no Ubuntu 24.04: erro de sandbox](rstudio-sandbox-ubuntu.md).
 
