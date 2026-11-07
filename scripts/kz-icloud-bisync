@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+BASE="/mnt/taiwan_com"
+DEST="$BASE/Offline/icloud"
+FILTER="$HOME/.config/rclone/icloud-bisync.filters"
+LOGDIR="$BASE/Offline/.icloud_logs"
+HISTORY="$BASE/Offline/.icloud_history"
+STAMP="$(date +%Y%m%d_%H%M%S)"
+MODE="${1:-run}"
+
+case "$MODE" in
+    preview|init|run) ;;
+    *) echo "Usage: kz icloud-bisync [preview|init|run]" >&2; exit 2 ;;
+esac
+
+mountpoint -q "$BASE" || {
+    echo "ERROR: Shared partition not mounted." >&2
+    exit 1
+}
+[[ -d "$DEST" && -f "$FILTER" ]] || {
+    echo "ERROR: Offline directory or filters missing." >&2
+    exit 1
+}
+
+exec 9>"${XDG_RUNTIME_DIR:-/tmp}/kz-icloud-sync.${UID}.lock"
+flock -n 9 || {
+    echo "ERROR: Another iCloud sync is running." >&2
+    exit 1
+}
+mkdir -p "$LOGDIR"
+
+FLAGS=(
+    --filters-file "$FILTER"
+    --backup-dir1 "icloud:__kz_icloud_history/$STAMP"
+    --backup-dir2 "$HISTORY/$STAMP"
+    --check-access
+    --max-delete 10
+    --conflict-resolve none
+    --resilient
+    --recover
+    --max-lock 2m
+    --create-empty-src-dirs
+    --transfers 2
+    --checkers 4
+    --log-level INFO
+    --log-file "$LOGDIR/icloud-bisync-$(date +%F).log"
+)
+case "$MODE" in
+    preview) FLAGS+=(--resync-mode newer --dry-run) ;;
+    init) FLAGS+=(--resync-mode newer) ;;
+esac
+rclone bisync icloud: "$DEST" "${FLAGS[@]}"
