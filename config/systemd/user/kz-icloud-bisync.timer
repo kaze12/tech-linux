@@ -1,0 +1,11 @@
+[Unit]
+Description=Run iCloud Bisync every 15 minutes
+
+[Timer]
+OnCalendar=*:0/15
+Persistent=true
+AccuracySec=1min
+Unit=kz-icloud-bisync.service
+
+[Install]
+WantedBy=timers.target
