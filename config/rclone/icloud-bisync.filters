@@ -1,0 +1,5 @@
+# Exclude remote history from synchronization
+- /__kz_icloud_history/
+
+# Pages document with special handling
+- /Pages/Note Taking.pages
