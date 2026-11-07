@@ -4,7 +4,7 @@ Documentação das configurações, comandos e procedimentos aplicados às minha
 
 ## Comandos pessoais
 
-- [`kz`](docs/comandos/kz.md) — namespace dos comandos pessoais, incluindo `kz apps`, `kz drive` e `kz update`.
+- [`kz`](docs/comandos/kz.md) — namespace dos comandos pessoais, incluindo `kz apps`, `kz drive`, `kz update`, `kz icloud-bisync` e `kz icloud-sync`.
 
 ## Aplicativos e diagnósticos
 
@@ -16,5 +16,8 @@ Documentação das configurações, comandos e procedimentos aplicados às minha
 - [RStudio: erro de sandbox no Ubuntu 24.04](docs/aplicativos/rstudio-sandbox-ubuntu.md) — diagnóstico, correção AppArmor e ajuste pendente do atalho no taiwan.
 
 ## Configurações
+
+- [iCloud Drive: Rclone Bisync e cópia offline](docs/configuracoes/rclone-icloud-bisync.md) — sincronização bilateral a cada 15 minutos, scripts `kz`, histórico, recuperação e automação systemd.
+
 
 Esta documentação será ampliada conforme novas configurações forem aplicadas no projeto Tech Linux.
