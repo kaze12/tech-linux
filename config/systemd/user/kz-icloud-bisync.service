@@ -1,0 +1,10 @@
+[Unit]
+Description=iCloud bidirectional offline sync
+ConditionPathIsMountPoint=/mnt/taiwan_com
+
+[Service]
+Type=oneshot
+TimeoutStartSec=0
+TimeoutStopSec=3min
+KillSignal=SIGINT
+ExecStart=/usr/bin/systemd-inhibit --what=sleep:idle --mode=block --why=iCloud-Bisync /home/icm/.local/bin/kz-icloud-bisync run
