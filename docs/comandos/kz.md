@@ -21,6 +21,8 @@ Comandos disponíveis atualmente:
 ```text
 apps
 drive
+icloud-bisync
+icloud-sync
 update
 ```
 
@@ -189,6 +191,8 @@ kz-backup/
 └── scripts/
     ├── kz-apps
     ├── kz-drive
+    ├── kz-icloud-bisync
+    ├── kz-icloud-sync
     └── kz-update
 ```
 
@@ -215,6 +219,29 @@ set -euo pipefail
 ```
 
 e registra uma função de limpeza com `trap ... EXIT`.
+
+## `kz icloud-bisync`
+
+Arquivo instalado: `~/.local/bin/kz-icloud-bisync`.
+
+Realiza sincronização **bilateral** entre `icloud:` e `/mnt/taiwan_com/Offline/icloud`. A pasta `/home/icm/Nuvens/icloud` é apenas a montagem online do mesmo remote, e não deve ser usada como outra origem da sincronização.
+
+| Comando | Objetivo |
+|---|---|
+| `kz icloud-bisync preview` | Simular reconciliação inicial (`--resync-mode newer --dry-run`) |
+| `kz icloud-bisync init` | Inicializar/reconstruir estado, com alterações reais; requer análise prévia |
+| `kz icloud-bisync run` | Executar sincronização incremental normal |
+| `kz icloud-bisync` | Equivale a `run` |
+
+O timer `kz-icloud-bisync.timer` executa `run` a cada 15 minutos e impede a suspensão normal enquanto o serviço estiver em execução. Mantém logs, controle de concorrência e históricos separados. `init` não é usado periodicamente.
+
+Consulte [o procedimento completo](../configuracoes/rclone-icloud-bisync.md) e [o script versionado](../../scripts/kz-icloud-bisync). Os arquivos do GitHub não atualizam automaticamente `~/.local/bin` no computador.
+
+## `kz icloud-sync` (legado)
+
+Arquivo: `~/.local/bin/kz-icloud-sync`.
+
+Executa `rclone copy icloud: /mnt/taiwan_com/Offline/icloud --update` com `--backup-dir`. É **unidirecional** (nuvem → local), não propaga alterações locais e não exclui automaticamente arquivos extras da pasta offline. O timer antigo foi desabilitado; **não executar em paralelo com `kz icloud-bisync`**.
 
 ## Criando novos subcomandos
 
@@ -323,6 +350,30 @@ kz drive
 `apt list --upgradable`: lista atualizações APT ainda disponíveis.
 
 `set -e`: encerra o script quando um comando retorna erro.
+
+## `kz icloud-bisync`
+
+`rclone bisync`: sincroniza alterações nos dois sentidos.
+
+`--resync-mode newer`: reconcilia divergências preferindo a data de modificação mais recente.
+
+`--dry-run`: simula transferências e exclusões sem aplicá-las.
+
+`--backup-dir1 / --backup-dir2`: guarda versões substituídas dos dois lados.
+
+`--check-access`: verifica o arquivo sentinela nos dois caminhos.
+
+`--max-delete 10`: limita a porcentagem de exclusões.
+
+`--conflict-resolve none`: mantém conflitos como versões separadas durante o ciclo normal.
+
+`flock -n`: impede duas execuções concorrentes.
+
+## `kz icloud-sync`
+
+`rclone copy`: copia da nuvem para o local sem deletar arquivos extras no destino, por padrão.
+
+`--update`: evita substituir arquivo de destino mais recente.
 
 ## `kz drive`
 
