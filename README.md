@@ -17,6 +17,8 @@ Documentação das configurações, comandos e procedimentos aplicados às minha
 
 ## Configurações
 
+- [Aplicativos APT em `taiwan_com` via imagem ext4](docs/configuracoes/aplicativos-apt-taiwan-com.md) — procedimento reutilizável, exemplo do Microsoft Edge, montagem persistente, reversão e limites das atualizações automáticas.
+
 - [iCloud Drive: Rclone Bisync e cópia offline](docs/configuracoes/rclone-icloud-bisync.md) — sincronização bilateral a cada 15 minutos, scripts `kz`, histórico, recuperação e automação systemd.
 
 
