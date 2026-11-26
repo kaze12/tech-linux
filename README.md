@@ -21,5 +21,7 @@ Documentação das configurações, comandos e procedimentos aplicados às minha
 
 - [iCloud Drive: Rclone Bisync e cópia offline](docs/configuracoes/rclone-icloud-bisync.md) — sincronização bilateral a cada 15 minutos, scripts `kz`, histórico, recuperação e automação systemd.
 
+- [taiwan: unificação das partições](docs/configuracoes/unificacao-particoes-taiwan.md) — relatório (em inglês, para IAs) de 16–17/11/2026: Windows e `taiwan_com` removidos, disco com uma única partição Ubuntu, `/mnt/taiwan_com` como pasta comum, backups e pendências.
+
 
 Esta documentação será ampliada conforme novas configurações forem aplicadas no projeto Tech Linux.
