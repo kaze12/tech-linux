@@ -14,7 +14,7 @@ case "$MODE" in
     *) echo "Usage: kz icloud-bisync [preview|init|run]" >&2; exit 2 ;;
 esac
 
-mountpoint -q "$BASE" || {
+[[ -d "$BASE" ]] || {
     echo "ERROR: Shared partition not mounted." >&2
     exit 1
 }
