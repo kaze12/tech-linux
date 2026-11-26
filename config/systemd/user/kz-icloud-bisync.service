@@ -1,6 +1,6 @@
 [Unit]
 Description=iCloud bidirectional offline sync
-ConditionPathIsMountPoint=/mnt/taiwan_com
+ConditionPathIsDirectory=/mnt/taiwan_com
 
 [Service]
 Type=oneshot

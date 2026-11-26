@@ -34,7 +34,7 @@ Arquivos de usuário:
 - `~/.config/systemd/user/kz-icloud-bisync.service`
 - `~/.config/systemd/user/kz-icloud-bisync.timer`
 
-Timer: `OnCalendar=*:0/15`, `Persistent=true`, `AccuracySec=1min`; disparos nominais aos minutos 00/15/30/45. Serviço: `Type=oneshot`, exige `/mnt/taiwan_com` montada e executa `/usr/bin/systemd-inhibit --what=sleep:idle --mode=block ... kz-icloud-bisync run`. Entre execuções é normal aparecer `inactive (dead)`. Timers anteriores `kz-icloud-sync.timer` e `rclone-icloud-offline.timer` foram desabilitados.
+Timer: `OnCalendar=*:0/15`, `Persistent=true`, `AccuracySec=1min`; disparos nominais aos minutos 00/15/30/45. Serviço: `Type=oneshot`, exige que a pasta `/mnt/taiwan_com` exista (`ConditionPathIsDirectory`; até 16/11/2026 exigia partição montada) e executa `/usr/bin/systemd-inhibit --what=sleep:idle --mode=block ... kz-icloud-bisync run`. Entre execuções é normal aparecer `inactive (dead)`. Timers anteriores `kz-icloud-sync.timer` e `rclone-icloud-offline.timer` foram desabilitados.
 
 ### Diagnóstico do serviço
 
